@@ -1,0 +1,29 @@
+﻿@model List<EntityLayer.Entity.Product>
+@{
+    ViewBag.Title = "CriticalStock";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>Ürün Bilgisi</th>
+        <th>Stok Sayısı</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        if (item.Stock < 50)
+        {
+            <tr style="background-color:yellow">
+                <td>@item.Name</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+        else if (item.Stock == 50)
+        {
+            <tr style="background-color:green">
+                <td>@item.Name</td>
+                <td>@item.Stock</td>
+            </tr>
+        }
+    }
+</table>
+

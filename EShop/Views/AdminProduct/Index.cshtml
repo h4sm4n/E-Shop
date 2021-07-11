@@ -1,0 +1,65 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<EntityLayer.Entity.Product>
+@{
+    ViewBag.Title = "Index";
+}
+<a class="btn btn-primary" href="/AdminProduct/Create">Ürün Ekle</a>
+<br />
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Ad</th>
+        <th>Ürün Bilgisi</th>
+        <th>Fiyat</th>
+        <th>Marka</th>
+        <th>Son Kullanma Tarihi</th>
+        <th>Stok</th>
+        <th>Kategori</th>
+        <th>Miktar(Gram)</th> 
+        <th>Resim</th>
+        <th>Aktif</th>
+        <th>Popüler</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>@item.Brand</td>
+            <td>@item.ExpireDate</td>
+            <td>@item.Stock</td>
+            <td>@item.Category.Name</td>
+            <td>@item.Quantity</td>
+            <td><img src="~/Content/Image/@item.Image" width="50" height="50" /></td>
+            <td>
+                @if (item.IsActive == true)
+                {
+                    <label class="btn btn-success">Evet</label>
+                }
+                else
+                {
+                    <label class="btn btn-danger">Hayır</label>
+                }
+            </td>
+            <td>
+                @if (item.IsPopular == true)
+                {
+                    <label class="btn btn-success">Evet</label>
+                }
+                else
+                {
+                    <label class="btn btn-danger">Hayır</label>
+                }
+            </td>
+            <td>@Html.ActionLink("Sil", "Delete", new {item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor musunuz?')" })</td>
+            <td><a class="btn btn-primary" href="/AdminProduct/Update/@item.Id">Güncelle</a></td>
+        </tr>
+    }
+</table>
+
+@Html.PagedListPager(Model,sayfa=>Url.Action("Index", new {sayfa}),PagedListRenderOptions.Classic)
+

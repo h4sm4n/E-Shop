@@ -1,0 +1,63 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<EntityLayer.Entity.Sales>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Satış Listesi</h2>
+<br />
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Ürün Ad</th>
+        <th>Adet</th>
+        <th>Birim Fiyat</th>
+        <th>Kargo Fiyatı</th>
+        <th>Toplam Fiyat</th>
+        <th>Resim</th>
+        <th>Tarih</th>
+        <th>Müşteri</th>
+        <th>İl / İlçe</th>
+        <th>Adres</th>
+        <th>Takip Numarası</th>
+        <th>Takip Numarası Girişi</th>
+    </tr>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        decimal price = item.Price;
+        int adet = item.Quantity;
+        decimal total = (price * adet)+10;
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Product.Name</td>
+            <td>@item.Quantity</td>
+            <td>@item.Price</td>
+            <td>10 TL</td>
+            <td>@total.ToString()</td>
+            <td><img src="~/Content/Image/@item.Product.Image" width="90" height="90" /></td>
+            <td>@Convert.ToDateTime(item.Date).ToString("dd/MM/yyyy")</td>
+            <td>@item.User.Name @item.User.Surname</td>
+            <td>@item.User.City / @item.User.County / @item.User.PostalCode</td>
+            <td>@item.User.Address</td>
+            <td>@item.TrackNumber</td>
+            @if (item.TrackNumber == null)
+            {
+                <td><a class="btn btn-primary" href="/AdminSales/AddTrackNumber/@item.Id">Takip Numarası Gir</a></td>
+            }
+
+
+        </tr>
+    }
+
+    </tbody>
+</table>
+
+@Html.PagedListPager(Model, sayfa => Url.Action("Index", new { sayfa }), PagedListRenderOptions.Classic)
+
+

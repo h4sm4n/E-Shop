@@ -1,0 +1,72 @@
+﻿@using DataAccessLayer.Context
+@model EntityLayer.Entity.Cart
+@{
+    ViewBag.Title = "Buy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal-header">
+    <h2>Satın Al</h2>
+</div>
+
+<div class="container">
+    @using (Html.BeginForm("Buy2", "Sales", FormMethod.Post))
+    {
+        int kargo = 10;
+        decimal total = kargo + Model.Price;
+        <div class="modal-body col-md-3">
+            @Html.HiddenFor(x => x.Id)
+            <div class="form-group">
+                Kullanıcı Ad Soyad: @Session["Ad"] @Session["Soyad"]
+            </div>
+
+            <div class="form-group">
+                Ürün Bilgisi: @Html.DisplayFor(x => x.Product.Name, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                Adet: @Html.DisplayFor(x => x.Quantity, new { @class = "form-control" })
+            </div>
+
+
+            <div class="form-group">
+                Ürün Resmi <img src="~/Content/Image/@Model.Product.Image" width="50" height="50" />
+            </div>
+            <div class="form-group">
+                Ürün Fiyatı: @Model.Product.Price   
+            </div>
+            <div class="form-group">
+                Kargo Fiyatı: 10 TL
+            </div>
+            <div class="form-group" style="font-size:20px; color:red">
+                Toplam Fiyat: @total.ToString()
+            </div>
+        </div>
+        int id = Convert.ToInt32(Session["userid"]);
+        DataContext db = new DataContext();
+        string adres = db.Users.Find(id).Address;
+        string il = db.Users.Find(id).City;
+        string ilce = db.Users.Find(id).County;
+        int posta = db.Users.Find(id).PostalCode.Value;
+
+        <div style="margin-left:77%">
+            <div class="form-group">
+                <h5>İl: @il </h5>
+            </div>
+
+            <div class="form-group">
+                <h5>İlçe @ilce </h5>
+            </div>
+            
+            <div class="form-group">
+                <h5>Adres: @adres / @posta </h5>
+            </div>
+            
+        </div>
+            <div class="modal-footer" style="float:bottom">
+            <button class="btn btn-success">Satın Al</button>
+            <a href="/Cart/Index" class="btn btn-dark">İptal</a>
+        </div>
+    }
+</div>
+

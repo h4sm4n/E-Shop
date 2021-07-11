@@ -1,0 +1,84 @@
+﻿@using DataAccessLayer.Context
+@model List<EntityLayer.Entity.Cart>
+@{
+    ViewBag.Title = "BuyAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="container">
+        <h2>Merhaba @Session["Ad"] @Session["Soyad"]. Satın alma sayfasına hoşgeldiniz.</h2>
+    </div>
+
+
+    <div class="container">
+        @using (Html.BeginForm("Buy2", "Sales", FormMethod.Post))
+        {
+            foreach (var item in Model)
+            {
+                decimal price = item.Price;
+                int adet = item.Quantity;
+                decimal total = price * adet;
+                <div class="form-group">
+                    <h5>Id: @Html.DisplayFor(x => item.Id)</h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Ürün Adı: @Html.DisplayFor(x => item.Product.Name)</h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Adet: @Html.DisplayFor(x => item.Quantity)</h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Birim Fiyat: @Html.DisplayFor(x => item.Price)</h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Toplam Fiyat:@Convert.ToString(total) </h5>
+                </div>
+
+                <div class="form-group">
+                    <h5>Resim: <img src="~/Content/Image/@item.Product.Image" width="50" height="50" /></h5>
+                </div>
+            }
+            <div class="form-group">
+                <h5>Kargo Fiyatı: 10 TL </h5>
+            </div>
+
+            <p style="color: red; text-align: center">@ViewBag.Tutar</p>
+
+            
+            int id = Convert.ToInt32(Session["userid"]);
+            DataContext db = new DataContext();
+            string adres = db.Users.Find(id).Address;
+            string il = db.Users.Find(id).City;
+            string ilce = db.Users.Find(id).County;
+            int posta = db.Users.Find(id).PostalCode.Value;
+
+
+            <div class="form-group">
+                <h5>İl: @il </h5>
+            </div>
+
+            <div class="form-group">
+                <h5>İlçe @ilce </h5>
+            </div>
+
+            <div class="form-group">
+                <h5>Adres: @adres / @posta </h5>
+            </div>
+            <div class="container">
+                <div class="form-group" style="float:left">
+                    <button class="btn btn-success">Onay</button>
+                </div>
+
+                <div style="float:right">
+                    <a href="/Cart/Index" class="btn btn-danger">İptal</a>
+                </div>
+            </div>
+                }
+    </div>
+
+</div>

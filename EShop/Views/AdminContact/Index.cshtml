@@ -1,0 +1,31 @@
+﻿@model List<EntityLayer.Entity.Contact>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Gelen Mesajlar</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Ad Soyad</th>
+        <th>Email</th>
+        <th>Mesaj</th>
+        <th>Sil</th>
+        
+    </tr>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Email</td>
+            <td>@item.Message</td>
+            <td>@Html.ActionLink("Sil", "Delete", new {item.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor musunuz?')" })</td>
+                
+        </tr>
+    }
+
+    </tbody>
+</table>
+

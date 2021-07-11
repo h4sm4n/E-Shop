@@ -1,0 +1,103 @@
+﻿@model EntityLayer.Entity.User
+@{
+    ViewBag.Title = "Kullanıcı Bilgileri";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/eshop/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<form method="post">
+    <div class="container">
+
+        <h2>KULLANICI BİLGİLERİM</h2>
+        <br />
+        <div class="form-group">
+            <label>Ad</label>
+            <input type="text" class="form-control" name="Name" value="@Model.Name" required />
+            @Html.ValidationMessageFor(x => x.Name, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Soyad</label>
+            <input type="text" class="form-control" name="Surname" value="@Model.Surname" required />
+            @Html.ValidationMessageFor(x => x.Surname, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Kullanıcı Adı</label>
+            <input type="text" class="form-control" name="Username" value="@Model.Username" required />
+            @Html.ValidationMessageFor(x => x.Username, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" name="Email" value="@Model.Email" required />
+            @Html.ValidationMessageFor(x => x.Email, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Şifre</label>
+            <input type="password" class="form-control" name="Password" value="@Model.Password" readonly />
+            @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Şifre(Tekrar)</label>
+            <input type="password" class="form-control" name="RePassword" value="@Model.RePassword" readonly />
+            @Html.ValidationMessageFor(x => x.RePassword, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>TC Kimlik No</label>
+            <input type="number" class="form-control" name="UserTc" value="@Model.UserTc" maxlength="11" required/>
+            @Html.ValidationMessageFor(x => x.UserTc, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Telefon</label>
+            <input type="number" class="form-control" name="Phone" value="@Model.Phone" maxlength="11" required />
+            @Html.ValidationMessageFor(x => x.Phone, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Cinsiyet</label>
+            <input type="text" class="form-control" name="Gender" value="@Model.Gender" required />
+            @Html.ValidationMessageFor(x => x.Gender, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Doğum Tarihi</label>
+            <input type="text" class="form-control" name="Birthday" value="@Model.Birthday" required />
+            @Html.ValidationMessageFor(x => x.Birthday, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Şehir</label>
+            <input type="text" class="form-control" name="City" value="@Model.City" required />
+            @Html.ValidationMessageFor(x => x.City, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>İlçe</label>
+            <input type="text" class="form-control" name="County" value="@Model.County" required />
+            @Html.ValidationMessageFor(x => x.County, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Adres</label>
+            <input type="text" class="form-control" name="Address" value="@Model.Address" required />
+            @Html.ValidationMessageFor(x => x.Address, "", new { @style = "color:red" })
+        </div>
+
+        <div class="form-group">
+            <label>Posta Kodu</label>
+            <input type="number" class="form-control" name="PostalCode" value="@Model.PostalCode" required />
+            @Html.ValidationMessageFor(x => x.PostalCode, "", new { @style = "color:red" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Güncelle</button>
+
+
+    </div>
+</form>
+

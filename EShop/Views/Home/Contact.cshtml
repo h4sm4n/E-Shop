@@ -1,0 +1,54 @@
+﻿@model EntityLayer.Entity.Contact
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5 mr-auto">
+            <h2>Bizimle İletişime Geçin</h2>
+            <p class="mb-5">Türkiye'nin her yerine en iyi kalitede kuru yemişi gönderiyoruz.</p>
+
+            <ul class="list-unstyled pl-md-5 mb-5">
+                <li class="d-flex text-black mb-2">
+                    <span class="mr-3"><span class="icon-map"></span></span> Atatürk Bulvarı, Aydın , <br> Türkiye
+                </li>
+                <li class="d-flex text-black mb-2"><span class="mr-3"><span class="icon-phone"></span></span> +90 (553) 034 6324</li>
+                <li class="d-flex text-black"><span class="mr-3"><span class="icon-envelope-o"></span></span> info@serttas.com </li>
+            </ul>
+        </div>
+
+        <div class="col-md-6">
+            <form class="mb-5" method="post" id="contactForm" name="contactForm">
+                <div class="row">
+
+                    <div class="col-md-12 form-group">
+                        <label for="name" class="col-form-label">İsim</label>
+                        <input type="text" class="form-control" name="Name" id="name" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="email" class="col-form-label">Email</label>
+                        <input type="text" class="form-control" name="Email" id="email" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <label for="message" class="col-form-label">Mesaj</label>
+                        <textarea class="form-control" name="Message" id="message" cols="30" rows="7" required></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-primary" value="Gönder">
+                        <span class="submitting"></span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

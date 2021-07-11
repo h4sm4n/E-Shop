@@ -1,0 +1,48 @@
+﻿@model EntityLayer.Entity.Sales
+@{
+    ViewBag.Title = "AddTrackNumber";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="form-group ">
+                    <label>Kullanıcı Emaili</label>
+                    <input type="text" name="Email" class="form-control" value="@Model.User.Email" readonly />
+                </div>
+                <br />
+                <div class="form-group ">
+                    <label>Sipariş Tarihi</label>
+                    <input type="text" name="Date" class="form-control" value="@Model.Date" readonly />
+                </div>
+                <div class="form-group ">
+                    <label>İl</label>
+                    <input type="text" name="User.City" class="form-control" value="@Model.User.City" readonly />
+                </div>
+                <div class="form-group ">
+                    <label>İlçe</label>
+                    <input type="text" name="User.County" class="form-control" value="@Model.User.County" readonly />
+                </div>
+                <div class="form-group ">
+                    <label>Adres</label>
+                    <input type="text" name="Address" class="form-control" value="@Model.User.Address" readonly />
+                </div>
+                <div class="form-group ">
+                    <label>ID</label>
+                    <input type="text" name="Id" class="form-control" value="@Model.Id" readonly />
+                </div>
+                <div class="form-group ">
+                    <label>Takip Numarasını Girin</label>
+                    <input type="text" name="TrackNumber" class="form-control" value="@Model.TrackNumber"/>
+                </div>
+                <br />
+                <button type="submit" class="btn-outline-primary">Takip Numarasını Onayla</button>
+            </form>
+        </div>
+    </div>
+</div>
+
